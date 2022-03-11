@@ -9,16 +9,11 @@ bank_account_dao = AccountDAOImp()
 bank_account_service = BankAccountServiceImp(bank_account_dao)
 test_bank_account_person = Account(1, 1, 100.00)
 
-"""Create bank account test"""
-
 
 def test_add_new_bank_account():
     test_bank_account = Account(1, 0, 100)
     result = bank_account_dao.create_bank_account(test_bank_account)
     assert result.bad_id_number != 0
-
-
-"""Get bank account info"""
 
 
 def test_get_bank_account_info_by_bank_account_id_success():
@@ -45,9 +40,6 @@ def test_get_all_bank_account_info_by_cust_id_nonexistent():
         assert False
     except IdNotFound as e:
         assert str(e) == "No customer account matches this ID number. Try again"
-
-
-"""update"""
 
 
 def test_deposit_funds_by_bank_account_id_success():
@@ -121,22 +113,6 @@ def test_transfer_funds_with_bad_cust_id():
         assert str(e) == "No bank account matches this ID number. Try again"
 
 
-def test_transfer_funds_with_bad_ba_id_1():
-    try:
-        bank_account_service.transfer_funds(1, 90, 2, 50.0)
-        assert False
-    except IdNotFound as e:
-        assert str(e) == "No bank account matches this ID number. Try again"
-
-
-def test_transfer_funds_with_bad_ba_id_2():
-    try:
-        bank_account_service.transfer_funds(1, 1, 90, 50.0)
-        assert False
-    except IdNotFound as e:
-        assert str(e) == "No bank account matches this ID number. Try again"
-
-
 def test_transfer_funds_with_negative():
     try:
         bank_account_service.transfer_funds(1, 1, 2, -50.0)
@@ -151,9 +127,6 @@ def test_transfer_funds_with_string():
         assert False
     except BadValueInput as e:
         assert str(e) == "This transaction could not be processed. Try again"
-
-
-"""Delete"""
 
 
 def test_delete_bank_account_by_id_success():
