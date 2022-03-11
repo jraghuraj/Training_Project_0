@@ -1,0 +1,2 @@
+class BadCustomerInfo(Exception):
+    pass
