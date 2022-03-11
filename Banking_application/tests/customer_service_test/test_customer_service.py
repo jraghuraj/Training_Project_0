@@ -8,13 +8,13 @@ from service_layer.customer_services.customer_service_imp import CustomerService
 customer_dao = CustomerDAOImp()
 customer_service = CustomerServiceImp(customer_dao)
 non_string_first_name = Customer(9, "Molly", 3)
-non_string_last_name = Customer("Jimbo", 29, 3)
+non_string_last_name = Customer("Patrick", 29, 3)
 first_name_too_long = Customer("Optimus Prime Omega the large", "Autobot", 3)
-last_name_too_long = Customer("Jimbo", "Adventures of the mighty man", 3)
+last_name_too_long = Customer("Patrick", "Adventures of the mighty man", 3)
 
 
 def test_check_no_duplicate_id_numbers():
-    test_customer = Customer("Jimmy", "Williams", 1)
+    test_customer = Customer("Jester", "Washington", 1)
     result = customer_dao.create_customer(test_customer)
     assert result.custom_id_number != 1
 
